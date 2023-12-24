@@ -1,0 +1,13 @@
+<!-- clinic/templates/clinic/doctor_enrollment.html -->
+
+{% extends 'poly_app/base.html' %}
+{% block content %}
+<h2>Doctor Enrollment Form</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Enrollment</button>
+</form>
+
+{% endblock %}
