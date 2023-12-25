@@ -1,3 +1,4 @@
+
 # Create your models here.
 import uuid
 
@@ -11,7 +12,7 @@ class Doctor(models.Model):
     bio = models.TextField()
     image = models.ImageField(upload_to='doctor_images/', null=True, blank=True)
     mobile_number = models.CharField(max_length=15, null=True, blank=True)
-    date_of_birth = models.IntegerField(null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
     day_of_appointment = models.CharField(max_length=100, null=True, blank=True)
     time_of_appointment = models.TimeField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
@@ -19,7 +20,7 @@ class Doctor(models.Model):
 
 class DoctorAvailability(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    doctor = models.ForeignKey(Doctor, null=False)
+    doctor = models.ForeignKey(Doctor, null=False, on_delete=models.PROTECT)
     day_of_week = models.CharField(max_length=10)
     start_time_of_availability = models.TimeField(null=False)
     end_time_of_availability = models.TimeField(null=False)
@@ -28,7 +29,7 @@ class DoctorAvailability(models.Model):
 
 class DoctorUnavailability(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    unavailable_slot = models.ForeignKey(DoctorAvailability, null=False, blank=False, on_delete=models.SET_NULL)
+    unavailable_slot = models.ForeignKey(DoctorAvailability, null=False, blank=False, on_delete=models.PROTECT)
     date = models.DateField(null=False)
     is_active = models.BooleanField(default=True)
 
@@ -44,11 +45,11 @@ class VisitType(models.Model):
 class Appointment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, db_index=True)
     patient_name = models.CharField(max_length=100, db_index=True)
-    age = models.IntegerField(null=False)
-    mobile_number = models.PositiveIntegerField(max_length=10, null=False, blank=False)
-    date_of_appointment = models.DateField(null=False)
-    time_of_appointment = models.TimeField(null=False, blank=False)
+    age = models.IntegerField(null=True)
+    mobile_number = models.PositiveIntegerField(null=True, blank=True)
+    date_of_appointment = models.DateField(null=True)
+    time_of_appointment = models.TimeField(null=True, blank=True)
     doctor = models.ForeignKey(Doctor, on_delete=models.DO_NOTHING)
-    selected_time_slot = models.ForeignKey(DoctorAvailability, on_delete=models.PROTECT)
-    type_of_visit = models.ForeignKey(VisitType, on_delete=models.PROTECT, null=False)
+    selected_time_slot = models.ForeignKey(DoctorAvailability, on_delete=models.PROTECT,null=True, blank=True)
+    type_of_visit = models.ForeignKey(VisitType, on_delete=models.PROTECT, null=True)
     is_active = models.BooleanField(default=True)
