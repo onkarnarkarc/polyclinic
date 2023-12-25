@@ -1,0 +1,10 @@
+<!-- clinic/templates/clinic/appointment_entry.html -->
+{% extends 'poly_app/base.html' %}
+{% block content %}
+<h2>Appointment Entry</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Appointment</button>
+</form>
+{% endblock %}

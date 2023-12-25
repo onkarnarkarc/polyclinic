@@ -1,147 +1,97 @@
-<!-- clinic/templates/clinic/homepage.html -->
-{% extends 'poly_app/base.html' %}
+{% extends 'poly_app/base_site.html' %}
 {% load static %}
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
-        // Add smooth scrolling to all links
-        $("a").on('click', function (event) {
-            // Make sure this.hash has a value before overriding default behavior
-            if (this.hash !== "") {
-                // Prevent default anchor click behavior
-                event.preventDefault();
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
 
-                // Store hash
-                var hash = this.hash;
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
 
-                // Using jQuery's animate() method to add smooth page scroll
-                // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-                $('html, body').animate({
-                    scrollTop: $(hash).offset().top
-                }, 800, function () {
-                    // Add hash (#) to URL when done scrolling (default click behavior)
-                    window.location.hash = hash;
-                });
-            } // End if
-        });
-    });
+      // Store hash
+      var hash = this.hash;
 
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+
+$('li .nav-item').on('click', function(){
+   $('li').removeClass('active');
+   $(this).toggleClass('active');
+})
+
+$('#top-nav-bar li a').click(function(e) {
+    $('#top-nav-bar li a').removeClass('current_page_item');
+    $(this).addClass('current_page_item');
+});
+</script>
+<style>
     
-</script>
-<script>
-    function initMap() {
-        // Map coordinates
-        var myLatLng = { lat: 20.3104, lng: 77.7738 };
+element.style {
+}
+body {
+    color: #202020;
+    font-family: "Source Sans Pro";
+    font-size: 16px;
+    font-weight: 700;
+    position: relative;
+    text-transform: uppercase;
+    display: table-cell;
+    margin-bottom: 0;
+    vertical-align: middle;
+    height: 82px;
+}
+    /* body{
+        font-family:Arial, Helvetica, sans-serif;
+    } */
+    .navbar-nav a:hover {
+  background-color: #3498db;
+  color: black;
+}
 
-        // Create a map centered at the coordinates
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: myLatLng,
-            zoom: 12 // Adjust the zoom level
-        });
 
-        // Add a marker at the coordinates
-        var marker = new google.maps.Marker({
-            position: myLatLng,
-            map: map,
-            title: 'Hello World!'
-        });
-    }
-</script>
-<nav class="navbar navbar-expand-md navbar-light "  >
-    <ul class="navbar-nav">
-       
-        <li class="nav-item"><a class="nav-link" href="#section-about">Our Team</a></li>
-        <!-- <li><a href="#section-about">Our Team</a></li> -->
-        <!-- Add more navigation links as needed -->
-    </ul>
-</nav>
-<div id="carouseIndicators" class="carousel slide" data-ride="carousel" data-interval="5000">
-    <ol class="carousel-indicators">
-      <li data-target="#carouseIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouseIndicators" data-slide-to="1"></li>
-      <li data-target="#carouseIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <!-- <img class="d-block w-100" src="https://via.placeholder.com/1200x400" alt="About Us"> -->
-        <img src="{% static 'images/image1.jpg' %}" alt="Our Mission" class="d-none d-sm-block" style="width:100%">
+.current_page_item {
+  background-color: #3498db;
+  color: #FFF !important;
+  border-radius: 5px;
+  
+  /* box-shadow: 1px 1px 1px 1px  #3498db; */
+  z-index: 2;
+  /* padding: 1px;margin: 3px; */
+}
+</style>
+<div id="home">
+    <section>
 
-        <div class="carousel-caption  d-none d-md-block ">
-            <h5 style="color:black">About Us</h5>
-            <p style="color:black">
-                We are a Multispeciality clinic situated at prime location in Darwha city.
-                PariJit holds pride in being able to deliver quality services to their patients.
-                We are centres for multiple treatment services like General Medicine, Urology, Chest medicine and Dentistry are managed with highly qualified doctors. 
-                We genuinely care, because care and compassion is our culture.
-                We believe compassion is as powerful as any medicine to cure mankind.
-                </p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <!-- <img  src="{% static 'images/image2.jpg' %}" class="d-block w-100"   alt="Our Mission"> -->
-        <img src="{% static 'images/image2.jpg' %}" alt="Our Mission" class="d-none d-sm-block" style="width:100%">
-        <div class="carousel-caption d-none d-md-block  d-sm-block" style="text-align: center;color: black;">
-            <h5 style="color:black">Our Vision</h5>
-            
-                <ul style="text-align: left;">
-                    <li>Provide quality healthcare to all resident in Darwha</li>
-                    <li>Achieve professional excellence in health care</li>
-                    <li>Adhere to national and global standard in healthcare</li>
-                    <li>Ensure care with integrity and ethics.</li>
-                    <li>To provide “Speciality and Superspeciality OPD” services at affordable rates.</li>
-                </ul>
-               
-        </div>
-      </div>
-      <div class="carousel-item">
-        <!-- <img class="d-block w-100" src="{% static 'images/image3.jpg' %}" alt="Our Mission"> -->
-        <img src="{% static 'images/image3.jpg' %}" alt="Our Mission" class="d-none d-sm-block" style="width:100%">
-        <div class="carousel-caption d-none d-md-block  d-sm-block" style="color: black;">
-            <h5>Our Mission</h5>
-            <p>
-                To impart patient centric quality health services at an affordable rate using cutting edge technology with human touch.	
-            </p>
-        </div>
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouseIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouseIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+    </section>
 </div>
-<div id="section-about">
+<div id="portfolio">
+    <section>
+
+    </section>
+</div>
+<div id="our-team">
     <section>
         
-        <h2 class="container-fluid d-flex align-items-center justify-content-center">Meet Our Doctors</h2>
-        <!-- <div class="row"> -->
-
-            <div class="doctor-portfolio ">
-                {% for doctor in doctors %}
-                    <div class="doctor-card container d-flex align-items-center justify-content-center" >
-                        <div class="col-md-2" > 
-                            <p><img src="{{ doctor.image.url }}" alt="{{ doctor.name }}" style="width:100%;height: 30% !important;"></p>
-                        </div>
-                        <div class="col-md-6" >
-                            <h3>{{ doctor.name }}</h3>
-                            <p>{{ doctor.specialization }}</p>
-                            <p>{{ doctor.bio }}</p>
-                        </div>
-                        
-                    </div>
-                    <div class="row" style="height: 10px;"></div>
-                {% endfor %}
-            </div>
-        <!-- </div> -->
     </section>
-    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=Ee5FrfHIHW8" frameborder="0" allowfullscreen></iframe>
 </div>
-<div>
-    <div id="map" style="height: 400px;"></div>
-
+<div id="contact-us">
+    <section>
+        
+    </section>
 </div>
 
 {% endblock %}
