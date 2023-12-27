@@ -1,0 +1,103 @@
+<!-- base_site.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}PariJit Polyclinic{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnzf9Tii9CEnFV37tabT7gX8Ip9mfadPI&callback=initMap" async defer></script> -->
+        <link rel="shortcut icon" href="{% static 'images/favicon.jpg' %}" type="image/x-icon">
+        <link rel="icon" href="{% static 'images/favicon.jpg' %}" type="image/x-icon">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+    html {
+  scroll-behavior: smooth;
+}
+.head_list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.wrap_head_nav {
+    text-align: right;
+    padding-top: 12px;
+}
+.wrap_head_logo{
+    text-align: right;
+    padding-top: 12px;
+    margin-left:12px;
+}
+.head_menu {
+    padding: 6px 0;
+    background-color: #fff;
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+    padding-top: 2px   ;
+    height: auto;
+    width: 100%;
+}
+.box-shadow{
+border-radius: 5px;box-shadow: 1px 1px 1px 1px  #baefef;padding-top: 2px;margin: 3px;
+}
+.nav-item{
+    text-align: center;
+}
+@media only screen and (max-width: 767px) {
+#nav-icon3 {
+    display: inline-block;
+    margin-top: 12px;
+    margin-right: 15px;
+    float: right;
+}}
+
+  </style>
+    </head>
+    <body>
+        <div class="row" style="width: auto;margin-left: 5%;">
+            <div class="head_menu box-shadow">
+                <div class="container">
+                    <div class="row">
+                        <!-- <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
+                            <i class="fa fa-bars"></i>
+                        </button> -->
+                        <div class="col-xs-8 col-sm-8 col-md-3 wrap_head_logo">
+                            <a href="" class="head_logo logo-wrap-pro">
+                                <img src="{% static 'images/parijat_logo.jpg' %}" alt="" style = 'width:90%;height: 70%;'>
+                            </a>
+                        </div>
+                        <div id="nav-icon3" data-list="mobile_menu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <nav class="navbar navbar-expand-md navbar-light nav navbar-nav mai-top-nav header-top-menu"  >
+                            <ul class="navbar-nav head_list col-xs-12 col-sm-12 col-md-12 col-lg-12 wrap_head_nav" id="top-nav-bar">
+                            
+                                <li class="nav-item"><a class="nav-link" href="#home">&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#portfolio">&nbsp;&nbsp;&nbsp;Portfolio&nbsp;&nbsp;&nbsp;</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#our-team">&nbsp;&nbsp;&nbsp;Our Team&nbsp;&nbsp;&nbsp;</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#contact-us">&nbsp;&nbsp;&nbsp;Contact Us&nbsp;&nbsp;&nbsp;</a></li>
+                                <!-- <li><a href="#section-about">Our Team</a></li> -->
+                                <!-- Add more navigation links as needed -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
