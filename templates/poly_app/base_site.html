@@ -3,8 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
         <meta name="description" content="PariJit Polyclinic Html5 Template">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
         <meta name="author" content="PariJitPolyclinic">
@@ -12,7 +13,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}PariJit Polyclinic{% endblock %}</title>
         
-        <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnzf9Tii9CEnFV37tabT7gX8Ip9mfadPI&callback=initMap" async defer></script> -->
         <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
         <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
 
@@ -31,8 +31,8 @@
 
   
     </head>
-    <body id="top" style="display: fixed;
-    width:100%;
+    <body id="top" style="position: fixed;
+    width:100% !important;
     height:100%;padding: 0;margin: 0;">
         <header>
             <div class="header-top-bar">
@@ -63,7 +63,7 @@
         
                     <div class="collapse navbar-collapse" id="navbarmain">
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item active"><a class="nav-link" href="#top">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                             <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
         
@@ -570,6 +570,7 @@
 				<div class="col-lg-4">
 					<a class="backtop scroll-top-to" href="#top">
 						<i class="icofont-long-arrow-up"></i>
+                        <p style="color: black;">Back To Top</p>
 					</a>
 				</div>
 			</div>
@@ -583,11 +584,6 @@
     <script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
     <script src="{% static 'plugins/slick-carousel/slick/slick.min.js' %}"></script>
     <script src="{% static 'plugins/shuffle/shuffle.min.js' %}"></script>
-
-    <!-- Google Map -->
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA"></script>
-    <script src="plugins/google-map/gmap.js"></script> -->
-    
     <script src="{% static 'js/script.js' %}"></script>
 
         {% block content %}
