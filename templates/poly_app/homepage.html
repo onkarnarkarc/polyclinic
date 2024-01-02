@@ -168,65 +168,74 @@ $('#top-nav-bar li a').click(function(e) {
              <div class="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
               <h2 class="mb-2 title-color">Book an appoinment</h2>
               <p class="mb-4">Mollitia dicta commodi est recusandae iste, natus eum asperiores corrupti qui velit . Iste dolorum atque similique praesentium soluta.</p>
-                 <form id="#" class="appoinment-form" method="post" action="#">
+                <form method="post" class="needs-validation" novalidate>
+                  {% csrf_token %}
+                  {{ form.non_field_errors }}
                       <div class="row">
-                           <div class="col-lg-6">
-                              <div class="form-group">
-                                  <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Choose Department</option>
-                                    <option>Software Design</option>
-                                    <option>Development cycle</option>
-                                    <option>Software Development</option>
-                                    <option>Maintenance</option>
-                                    <option>Process Query</option>
-                                    <option>Cost and Duration</option>
-                                    <option>Modal Delivery</option>
-                                  </select>
-                              </div>
-                          </div>
+                           
                           <div class="col-lg-6">
                               <div class="form-group">
-                                  <select class="form-control" id="exampleFormControlSelect2">
-                                    <option>Select Doctors</option>
-                                    <option>Software Design</option>
-                                    <option>Development cycle</option>
-                                    <option>Software Development</option>
-                                    <option>Maintenance</option>
-                                    <option>Process Query</option>
-                                    <option>Cost and Duration</option>
-                                    <option>Modal Delivery</option>
-                                  </select>
+                                  {{ form.doctor }}
+                                <div class="invalid-feedback">
+                                    Please select a doctor.
+                                </div>
                               </div>
                           </div>
   
                            <div class="col-lg-6">
                               <div class="form-group">
-                                  <input name="date" id="date" type="text" class="form-control" placeholder="dd/mm/yyyy">
+                                  {{ form.date_of_appointment }}
+                                <div class="invalid-feedback">
+                                    Please provide a valid appointment date.
+                                </div>
                               </div>
                           </div>
   
                           <div class="col-lg-6">
                               <div class="form-group">
-                                  <input name="time" id="time" type="text" class="form-control" placeholder="Time">
+                                {{ form.time_of_appointment }}
+                                <div class="invalid-feedback">
+                                  Please provide a valid appointment date.
+                                </div>
                               </div>
                           </div>
                            <div class="col-lg-6">
                               <div class="form-group">
-                                  <input name="name" id="name" type="text" class="form-control" placeholder="Full Name">
+                                {{ form.patient_name }}
+                                <div class="invalid-feedback">
+                                    Please provide a valid patient name.
+                                </div>
                               </div>
                           </div>
+                          <div class="col-lg-6">
+                            <div class="form-group">
+                              {{ form.age }}
+                              <div class="invalid-feedback">
+                                  Please provide a valid patient age.
+                              </div>
+                            </div>
+                        </div>
+                        
   
                           <div class="col-lg-6">
                               <div class="form-group">
-                                  <input name="phone" id="phone" type="Number" class="form-control" placeholder="Phone Number">
+                                {{ form.mobile_number }}
+                                <div class="invalid-feedback">
+                                  Please provide a valid Contact Number.
+                                </div>
                               </div>
                           </div>
                       </div>
                       <div class="form-group-2 mb-4">
                           <textarea name="message" id="message" class="form-control" rows="6" placeholder="Your Message"></textarea>
                       </div>
-  
-                      <a class="btn btn-main btn-round-full" href="confirmation.html">Make Appoinment<i class="icofont-simple-right ml-2"></i></a>
+                      <button type="submit" class="btn btnbookappbnt btn btn-main btn-round-full" fdprocessedid="b8lopf">
+                        
+                        Book an Appointment<i class="icofont-simple-right ml-2"></i>
+                      </button>
+                      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
                   </form>
               </div>
           </div>

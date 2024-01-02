@@ -16,7 +16,8 @@ class Doctor(models.Model):
     day_of_appointment = models.CharField(max_length=100, null=True, blank=True)
     time_of_appointment = models.TimeField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
-
+    def __str__(self):
+        return self.name
 
 class DoctorAvailability(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
@@ -52,4 +53,6 @@ class Appointment(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.DO_NOTHING)
     selected_time_slot = models.ForeignKey(DoctorAvailability, on_delete=models.PROTECT,null=True, blank=True)
     type_of_visit = models.ForeignKey(VisitType, on_delete=models.PROTECT, null=True)
+
+    message = models.TextField( null = True, blank = True)
     is_active = models.BooleanField(default=True)

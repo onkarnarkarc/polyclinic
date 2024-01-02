@@ -10,9 +10,24 @@ from .forms import AppointmentEntryForm, DoctorEnrollmentForm
 def homepage(request):
     # Retrieve doctor portfolio
     print("hello")
-    doctors = Doctor.objects.all()
+    if request.method == 'POST':
+        form = AppointmentEntryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Add any additional logic, e.g., send confirmation email
+    else:
+        form = AppointmentEntryForm()
+    doctors = Doctor.objects.filter(is_active = True)
+    # form = AppointmentEntryForm()
+
+
+    form_data = {
+            'doctors': doctors,
+            'form': form
+    }
+
     # doctors = {}
-    return render(request, 'poly_app/homepage.html', {'doctors': doctors})
+    return render(request, 'poly_app/homepage.html', form_data)
 
 def appointment_entry(request):
     if request.method == 'POST':
