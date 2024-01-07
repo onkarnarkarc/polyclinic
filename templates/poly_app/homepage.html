@@ -60,7 +60,7 @@ $('#top-nav-bar li a').click(function(e) {
                     <div class="col-lg-4">
                         <div class="about-content pl-4 mt-4 mt-lg-0">
                             <h2 class="title-color">Personal care <br>& healthy living</h2>
-                            <p class="mt-4 mb-5">We provide best leading medicle service Nulla perferendis veniam deleniti ipsum officia dolores repellat laudantium obcaecati neque.</p>
+                            <p class="mt-4 mb-5">Your Health, Our Priority: Multispeciality Excellence at the Heart of Darwha City.</p>
 
                             
                         </div>
@@ -133,7 +133,9 @@ $('#top-nav-bar li a').click(function(e) {
                     <div class="position-relative doctor-inner-box">
                       <div class="doctor-profile">
                          <div class="doctor-img">
+                            {% if doctor.image.url %}
                                  <img src="{{ doctor.image.url }}" alt="{{ doctor.name }}" class="img-fluid w-100">
+                                {% endif %}
                          </div>
                       </div>
                       <div class="content mt-3">
@@ -151,6 +153,18 @@ $('#top-nav-bar li a').click(function(e) {
   </section>
   {% endblock %}
   {% block  appointment %}
+  <style>
+    input, select, textarea {
+    box-sizing: border-box;
+    /* Add more styles as needed */
+}
+  </style>
+  <script>
+    $(document).ready(function () {
+      // Set placeholder for the time input field
+      $('#time_of_appointment').attr('placeholder', 'hh:mm');
+    });
+  </script>
   <section class="appoinment section">
     <div class="container" id="appointment">
       <div class="row">
@@ -164,78 +178,81 @@ $('#top-nav-bar li a').click(function(e) {
             </div>
         </div>
   
-        <div class="col-lg-8">
+        <div class="col-lg-8" id="appointment_div">
              <div class="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
               <h2 class="mb-2 title-color">Book an appoinment</h2>
-              <p class="mb-4">Mollitia dicta commodi est recusandae iste, natus eum asperiores corrupti qui velit . Iste dolorum atque similique praesentium soluta.</p>
+              <p class="mb-4">Please fill in the required fields to book a slot for you.</p>
                 <form method="post" class="needs-validation" novalidate>
                   {% csrf_token %}
-                  {{ form.non_field_errors }}
-                      <div class="row">
-                           
-                          <div class="col-lg-6">
-                              <div class="form-group">
-                                  {{ form.doctor }}
-                                <div class="invalid-feedback">
-                                    Please select a doctor.
-                                </div>
-                              </div>
-                          </div>
-  
-                           <div class="col-lg-6">
-                              <div class="form-group">
-                                  {{ form.date_of_appointment }}
-                                <div class="invalid-feedback">
-                                    Please provide a valid appointment date.
-                                </div>
-                              </div>
-                          </div>
-  
-                          <div class="col-lg-6">
-                              <div class="form-group">
-                                {{ form.time_of_appointment }}
-                                <div class="invalid-feedback">
-                                  Please provide a valid appointment date.
-                                </div>
-                              </div>
-                          </div>
-                           <div class="col-lg-6">
-                              <div class="form-group">
-                                {{ form.patient_name }}
-                                <div class="invalid-feedback">
-                                    Please provide a valid patient name.
-                                </div>
-                              </div>
-                          </div>
-                          <div class="col-lg-6">
-                            <div class="form-group">
-                              {{ form.age }}
-                              <div class="invalid-feedback">
-                                  Please provide a valid patient age.
-                              </div>
-                            </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        {{ form.patient_name }}
+                        <!-- <div class="invalid-feedback">
+                            Please provide a valid patient name.
+                        </div> -->
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                          {{ form.age }}
+                          <!-- <div class="invalid-feedback">
+                              Please provide a valid patient age.
+                          </div> -->
                         </div>
-                        
-  
-                          <div class="col-lg-6">
-                              <div class="form-group">
-                                {{ form.mobile_number }}
-                                <div class="invalid-feedback">
-                                  Please provide a valid Contact Number.
-                                </div>
-                              </div>
-                          </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        {{ form.mobile_number }}
+                        <!-- <div class="invalid-feedback">
+                          Please provide a valid Contact Number.
+                        </div> -->
                       </div>
-                      <div class="form-group-2 mb-4">
-                          <textarea name="message" id="message" class="form-control" rows="6" placeholder="Your Message"></textarea>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                          {{ form.date_of_appointment }}
                       </div>
-                      <button type="submit" class="btn btnbookappbnt btn btn-main btn-round-full" fdprocessedid="b8lopf">
-                        
-                        Book an Appointment<i class="icofont-simple-right ml-2"></i>
-                      </button>
-                      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+                  </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                          {{ form.doctor }}
+                        </div>
+                    </div>
+
+                     
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                          {{ form.time_of_appointment }}
+                          <!-- <div class="invalid-feedback">
+                            {{ form.errors.time_of_appointment.html }}
+                          </div> -->
+                        </div>
+                    </div>
+                     
+                    
+                  
+
+                    
+                </div>
+                <div class="form-group-2 mb-4">
+                    <textarea name="message" id="message" class="form-control" rows="6" placeholder="Your Message"></textarea>
+                </div>
+                <div class="error_div">
+                  {% if form.errors %}
+                  <ul>
+                  {{ form.errors.as_ul }}
+                  </ul>
+                  {% endif %}
+                  
+                </div>
+                <button type="button" class="btn btnbookappbnt btn btn-main btn-round-full"  >
+                  
+                  Book an Appointment<i class="icofont-simple-right ml-2"></i>
+                </button>
+                      
+                     
                   </form>
               </div>
           </div>
@@ -245,32 +262,52 @@ $('#top-nav-bar li a').click(function(e) {
   </section>
   {% endblock %}
   {% block  contact %}
-  <section class="section contact-info pb-0">
+  <section class="section contact-info pb-0" style="align-items: center;">
     <div class="container" id="contact" style="margin-bottom: 10px;">
       <div class="row">
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-6" style="margin: auto;float: none;">
           <div class="contact-block mb-4 mb-lg-0">
             <i class="icofont-live-support"></i>
             <h5>Call Us</h5>
             +823-4565-13456
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="contact-block mb-4 mb-lg-0">
-            <i class="icofont-support-faq"></i>
-            <h5>Email Us</h5>
-            contact@mail.com
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-12">
-          <div class="contact-block mb-4 mb-lg-0">
-            <i class="icofont-location-pin"></i>
-            <h5>Location</h5>
-            North Main Street,Brooklyn Australia
-          </div>
-        </div>
+        
       </div>
     </div>
   </section>
   {% endblock %}
 
+{% block script_block %}
+<script>
+    $('.btnbookappbnt').click(function (e){
+      e.preventDefault();
+      let form = $(this).closest('form');
+      var formData = form.serialize();
+      $.ajax({
+          type: 'POST',
+          url: '{% url "homepage" %}',
+          dataType: "html",
+          data: formData,
+          success: function(response) {
+            e.preventDefault();
+              // let appoinment_div = $('#appointment_div');
+              // appoinment_div.html($(response).find('#appointment_div'))
+              
+              alert('Form submitted succesfully.');
+              $('form').find(':input').val('');
+              window.history.pushState(null, 'Home Page - Parijat Policlinic', window.location.href.split('#')[0]);
+          },
+          error: function(xhr){
+            console.log('error')
+            // alert('Something went wrong')
+            let appoinment_div = $('#appointment_div');
+            appoinment_div.html($(xhr['responseText']).find('#appointment_div'))
+            console.log(xhr);
+            e.preventDefault();
+          }
+      });
+    })
+</script>
+
+{% endblock script_block%}

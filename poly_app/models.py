@@ -17,7 +17,7 @@ class Doctor(models.Model):
     time_of_appointment = models.TimeField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
     def __str__(self):
-        return self.name
+        return str(self.name)+"-"+str(self.mobile_number)
 
 class DoctorAvailability(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
@@ -27,13 +27,17 @@ class DoctorAvailability(models.Model):
     end_time_of_availability = models.TimeField(null=False)
     is_active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return str(self.doctor)+"-"+str(self.day_of_week)
+
 
 class DoctorUnavailability(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     unavailable_slot = models.ForeignKey(DoctorAvailability, null=False, blank=False, on_delete=models.PROTECT)
     date = models.DateField(null=False)
     is_active = models.BooleanField(default=True)
-
+    def __str__(self):
+        return str(self.unavailable_slot)+"-"+str(self.date)
 
 class VisitType(models.Model):
     name = models.CharField(max_length=255)
@@ -56,3 +60,6 @@ class Appointment(models.Model):
 
     message = models.TextField( null = True, blank = True)
     is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return str(self.patient_name)+"-Age"+str(self.age)+"-Doctor"+str(self.doctor)+"-Date"+str(self.date_of_appointment)

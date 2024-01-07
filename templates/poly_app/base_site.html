@@ -29,7 +29,26 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-  
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <style>
+        .only-font{
+ font-family: -apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Fira Sans,Ubuntu,Oxygen,Oxygen Sans,Cantarell,Droid Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Lucida Grande,Helvetica,Arial,sans-serif;
+ color: #333;
+}
+.height_element{
+    height:auto !important;
+}
+/* Example for targeting Chrome */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    /* Add specific styles for Chrome */
+    .form-control.height_element {
+        /* Custom styles for Chrome */
+        height:auto !important;
+    }
+}
+
+    </style>
     </head>
     
     <body id="top" style="position: fixed;
@@ -53,8 +72,8 @@
             </div>
             <nav class="navbar navbar-expand-lg navigation" id="navbar">
                 <div class="container">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="{% static 'images/parijat_logo.png' %}" alt="" class="img-fluid">
+                    <a class="navbar-brand" href="#top">
+                        <img src="{% static 'images/parijat_logo.png' %}" alt="" style="width:40%" class="img-fluid">
                     </a>
         
                     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain"
@@ -63,8 +82,8 @@
                     </button>
         
                     <div class="collapse navbar-collapse" id="navbarmain">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item active"><a class="nav-link" href="#top">Home</a></li>
+                        <ul class="navbar-nav ml-auto ">
+                            <li class="nav-item active"><a class="nav-link " href="#top">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="#about_parijat">About</a></li>
                             <li class="nav-item"><a class="nav-link" href="#values_parijat">Our Values</a></li>
         
@@ -83,10 +102,10 @@
                     <div class="col-lg-6 col-md-12 col-xl-7">
                         <div class="block">
                             <div class="divider mb-3"></div>
-                            <span class="text-uppercase text-sm letter-spacing ">Total Health care solution</span>
-                            <h1 class="mb-3 mt-3">Your most trusted health partner</h1>
+                            <!-- <span class="text-uppercase text-sm letter-spacing ">Total Health care solution</span> -->
+                            <h1 class="mb-3 mt-3">Quality Healthcare, Near to Home.</h1>
                             
-                            <p class="mb-4 pr-5">A repudiandae ipsam labore ipsa voluptatum quidem quae laudantium quisquam aperiam maiores sunt fugit, deserunt rem suscipit placeat.</p>
+                            <p class="mb-4 pr-5">Quality Healthcare, Near to Home.</p>
                            
                         </div>
                     </div>
@@ -154,95 +173,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-4 mr-auto col-sm-6">
-				<div class="widget mb-5 mb-lg-0">
-					<div class="logo mb-4">
-						<img src="{% static 'images/parijat_logo.png' %}" alt="" class="img-fluid">
-					</div>
-					<p>Tempora dolorem voluptatum nam vero assumenda voluptate, facilis ad eos obcaecati tenetur veritatis eveniet distinctio possimus.</p>
-
-					<ul class="list-inline footer-socials mt-4">
-						<li class="list-inline-item">
-							<a href="https://www.facebook.com/themefisher"><i class="icofont-facebook"></i></a>
-						</li>
-						<li class="list-inline-item">
-							<a href="https://twitter.com/themefisher"><i class="icofont-twitter"></i></a>
-						</li>
-						<li class="list-inline-item">
-							<a href="https://www.pinterest.com/themefisher/"><i class="icofont-linkedin"></i></a>
-						</li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="col-lg-2 col-md-6 col-sm-6">
-				<div class="widget mb-5 mb-lg-0">
-					<h4 class="text-capitalize mb-3">Department</h4>
-					<div class="divider mb-4"></div>
-
-					<ul class="list-unstyled footer-menu lh-35">
-						<li><a href="#!">Surgery </a></li>
-						<li><a href="#!">Wome's Health</a></li>
-						<li><a href="#!">Radiology</a></li>
-						<li><a href="#!">Cardioc</a></li>
-						<li><a href="#!">Medicine</a></li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="col-lg-2 col-md-6 col-sm-6">
-				<div class="widget mb-5 mb-lg-0">
-					<h4 class="text-capitalize mb-3">Support</h4>
-					<div class="divider mb-4"></div>
-
-					<ul class="list-unstyled footer-menu lh-35">
-						<li><a href="#!">Terms & Conditions</a></li>
-						<li><a href="#!">Privacy Policy</a></li>
-						<li><a href="#!">Company Support </a></li>
-						<li><a href="#!">FAQuestions</a></li>
-						<li><a href="#!">Company Licence</a></li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 col-sm-6">
-				<div class="widget widget-contact mb-5 mb-lg-0">
-					<h4 class="text-capitalize mb-3">Get in Touch</h4>
-					<div class="divider mb-4"></div>
-
-					<div class="footer-contact-block mb-4">
-						<div class="icon d-flex align-items-center">
-							<i class="icofont-email mr-3"></i>
-							<span class="h6 mb-0">Support Available for 24/7</span>
-						</div>
-						<h4 class="mt-2"><a href="mailto:support@email.com">Support@email.com</a></h4>
-					</div>
-
-					<div class="footer-contact-block">
-						<div class="icon d-flex align-items-center">
-							<i class="icofont-support mr-3"></i>
-							<span class="h6 mb-0">Mon to Fri : 08:30 - 18:00</span>
-						</div>
-						<h4 class="mt-2"><a href="tel:+23-345-67890">+23-456-6588</a></h4>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="footer-btm py-4 mt-5">
-			<div class="row align-items-center justify-content-between">
-				
 				
 			</div>
 
-			<div class="row">
-				<div class="col-lg-4">
-					<a class="backtop scroll-top-to" href="#top">
-						<i class="icofont-long-arrow-up"></i>
-                        <p style="color: black;">Back To Top</p>
-					</a>
-				</div>
-			</div>
+			
+
+			
 		</div>
+
+
 	</div>
 </footer>
  <!-- 
@@ -253,7 +192,17 @@
     <script src="{% static 'plugins/slick-carousel/slick/slick.min.js' %}"></script>
     <script src="{% static 'plugins/shuffle/shuffle.min.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
-
+    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>  -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+<script>
+        $('select').addClass('select2')
+        $('.select2').select2()
+    </script> -->
+    {% block script_block %}
         
+    {% endblock script_block %}
     </body>
 </html>
+
