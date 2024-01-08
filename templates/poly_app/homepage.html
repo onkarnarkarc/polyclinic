@@ -158,6 +158,7 @@ $('#top-nav-bar li a').click(function(e) {
     box-sizing: border-box;
     /* Add more styles as needed */
 }
+
   </style>
   <script>
     $(document).ready(function () {
@@ -196,17 +197,13 @@ $('#top-nav-bar li a').click(function(e) {
                     <div class="col-lg-6">
                         <div class="form-group">
                           {{ form.age }}
-                          <!-- <div class="invalid-feedback">
-                              Please provide a valid patient age.
-                          </div> -->
+                          
                         </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         {{ form.mobile_number }}
-                        <!-- <div class="invalid-feedback">
-                          Please provide a valid Contact Number.
-                        </div> -->
+                        
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -219,22 +216,13 @@ $('#top-nav-bar li a').click(function(e) {
                           {{ form.doctor }}
                         </div>
                     </div>
-
-                     
-
                     <div class="col-lg-6">
                         <div class="form-group">
                           {{ form.time_of_appointment }}
-                          <!-- <div class="invalid-feedback">
-                            {{ form.errors.time_of_appointment.html }}
-                          </div> -->
+                          
                         </div>
                     </div>
-                     
-                    
-                  
-
-                    
+                                         
                 </div>
                 <div class="form-group-2 mb-4">
                     <textarea name="message" id="message" class="form-control" rows="6" placeholder="Your Message"></textarea>

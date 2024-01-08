@@ -19,19 +19,17 @@ def homepage(request):
             form.errors.clear()
             form.errors.pop('age', None)
             form.save()
-            print('form111==',form)
+          
         else: 
-            print("form  error=======", form.errors)
+           
             status_code = 400
             # Add any additional logic, e.g., send confirmation email
     else:
         form = AppointmentEntryForm()
-        print('form==',form)
+       
         form.errors.clear()
     doctors = Doctor.objects.filter(is_active = True)
     
-
-    # print(form)
     form_data = {
         'doctors': doctors,
         'form': form

@@ -51,7 +51,7 @@ class Appointment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, db_index=True)
     patient_name = models.CharField(max_length=100, db_index=True)
     age = models.IntegerField(null=True)
-    mobile_number = models.PositiveIntegerField(null=True, blank=True)
+    mobile_number = models.CharField(max_length=15, null=True, blank=True)
     date_of_appointment = models.DateField(null=True)
     time_of_appointment = models.TimeField(null=True, blank=True)
     doctor = models.ForeignKey(Doctor, on_delete=models.DO_NOTHING)

@@ -17,6 +17,56 @@ def validate_mobile_number(value):
     # Check if the cleaned mobile number has at least 10 digits
     if len(cleaned_mobile_number) < 10:
         raise ValidationError('Mobile number must have at least 10 digits.')
+from datetime import datetime, time, timedelta
+
+# views.py
+from datetime import datetime
+from .models import DoctorUnavailability
+
+def is_doctor_available(doctor, appointment_date, appointment_time):
+    
+    # Check if the doctor is active
+    if not doctor.is_active:
+        return False
+
+    # Find the day of the week for the appointment date
+    appointment_day_of_week = appointment_date.strftime('%A').lower()
+
+    # Check if the doctor has availability on the specified day of the week
+    doctor_availability = doctor.doctoravailability_set.filter(
+        day_of_week=appointment_day_of_week,
+        is_active=True
+    ).first()
+
+    # Check if the doctor is explicitly marked as unavailable for the specified date
+    doctor_unavailability = DoctorUnavailability.objects.filter(
+        unavailable_slot__doctor=doctor,
+        date=appointment_date,
+        is_active=True
+    ).exists()
+
+    # if doctor_unavailability:
+        
+
+    if doctor_availability and not doctor_unavailability:
+        # Check if the appointment time is within the doctor's available time range
+        start_time = doctor_availability.start_time_of_availability
+        end_time = doctor_availability.end_time_of_availability
+
+        if start_time <= appointment_time <= end_time:
+            # Check if there is already an appointment scheduled for the specified date and time
+            conflicting_appointment = doctor.appointment_set.filter(
+                date_of_appointment=appointment_date,
+                time_of_appointment=appointment_time,
+                is_active=True
+            ).first()
+
+            if not conflicting_appointment:
+                # If all checks pass, the doctor is available
+                return True
+
+    # If any of the checks fail, the doctor is not available
+    return False
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -46,6 +96,19 @@ class AppointmentEntryForm(forms.ModelForm):
         model = Appointment
         
         fields = ['patient_name', 'age', 'mobile_number', 'date_of_appointment','time_of_appointment', 'doctor', 'message']
+    def clean(self):
+        cleaned_data = super().clean()
+
+        doctor = cleaned_data.get('doctor')
+        appointment_date = cleaned_data.get('date_of_appointment')
+        appointment_time = cleaned_data.get('time_of_appointment')
+
+        if doctor and appointment_date and appointment_time:
+            # Check if the doctor is available
+            if not is_doctor_available(doctor, appointment_date, appointment_time):
+                raise ValidationError('Doctor is not available at the specified date and time.')
+
+        return cleaned_data
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Customize the doctor field widget to display doctor names
@@ -59,6 +122,7 @@ class AppointmentEntryForm(forms.ModelForm):
         self.fields['doctor'].widget.attrs['class'] = 'form-control height_element'
         self.fields['time_of_appointment'].widget.attrs['class'] = 'form-control height_element'
         self.fields['time_of_appointment'].widget.attrs['placeholder'] = 'hh:mm'
+        self.fields['message'].widget.attrs['class'] = 'form-control height_element'
  
         def clean_appointment_date(self):
             date_of_appointment = self.cleaned_data.get('date_of_appointment')
