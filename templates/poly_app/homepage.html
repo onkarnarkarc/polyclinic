@@ -1,301 +1,292 @@
 {% extends 'poly_app/base_site.html' %}
 {% load static %}
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-  // Add smooth scrolling to all links
-  $("a").on('click', function(event) {
-
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function(){
-
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
+  $(document).ready(function(){
+    // Add smooth scrolling to all links
+    $("a").on('click', function(event) {
+  
+      // Make sure this.hash has a value before overriding default behavior
+      if (this.hash !== "") {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+  
+        // Store hash
+        var hash = this.hash;
+  
+        // Using jQuery's animate() method to add smooth page scroll
+        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 800, function(){
+  
+          // Add hash (#) to URL when done scrolling (default click behavior)
+          window.location.hash = hash;
+        });
+      } // End if
+    });
   });
-});
-
-$('li .nav-item').on('click', function(){
-   $('li').removeClass('active');
-   $(this).toggleClass('active');
-})
-
-$('#top-nav-bar li a').click(function(e) {
-    $('#top-nav-bar li a').removeClass('current_page_item');
-    $(this).addClass('current_page_item');
-});
+  
+  $('li .nav-item').on('click', function(){
+     $('li').removeClass('active');
+     $(this).toggleClass('active');
+  })
+  
+  $('#top-nav-bar li a').click(function(e) {
+      $('#top-nav-bar li a').removeClass('current_page_item');
+      $(this).addClass('current_page_item');
+  });
 </script>
-
-
 {% block  about_parijat %}
 <section class="features">
-    <div id="about_parijat">
-        <section class="section about">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="about-img">
-                            <img src="{% static 'images/about/img-1.jpg' %}" alt="" class="img-fluid">
-                            <img src="{% static 'images/about/img-2.jpg' %}" alt="" class="img-fluid mt-4">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="about-img mt-4 mt-lg-0">
-                            <img src="{% static 'images/about/img-3.jpg' %}" alt="" class="img-fluid">
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="about-content pl-4 mt-4 mt-lg-0">
-                            <h2 class="title-color">Personal care <br>& healthy living</h2>
-                            <p class="mt-4 mb-5">Your Health, Our Priority: Multispeciality Excellence at the Heart of Darwha City.</p>
-
-                            
-                        </div>
-                    </div>
-                </div>
-                
+  <div id="about_parijat">
+    <section class="section about">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-4 col-sm-6">
+            <div class="about-img">
+              <img src="{% static 'images/about/img-1.jpg' %}" alt="" class="img-fluid">
+              <img src="{% static 'images/about/img-2.jpg' %}" alt="" class="img-fluid mt-4">
             </div>
-        </section>
-    </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="about-img mt-4 mt-lg-0">
+              <img src="{% static 'images/about/img-3.jpg' %}" alt="" class="img-fluid">
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="about-content pl-4 mt-4 mt-lg-0">
+              <h2 class="title-color">Personal care <br>& healthy living</h2>
+              <p class="mt-4 mb-5">Your Health, Our Priority: Multispeciality Excellence at the Heart of Darwha City.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </section>
 {% endblock %}
 {% block values_parijat %}
 <section class="features" style="margin-bottom: 10px;">
-    <div class="container" id="values_parijat">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="feature-block d-lg-flex">
-                    <div class="feature-item mb-5 mb-lg-0">
-                        <h5 style="color:black;text-align: center;">About Us</h5>
-                        <p style="color:black">
-                            We are a Multispeciality clinic situated at prime location in Darwha city.
-                            PariJit holds pride in being able to deliver quality services to their patients.
-                            We are centres for multiple treatment services like General Medicine, Urology, Chest medicine and Dentistry are managed with highly qualified doctors. 
-                            We genuinely care, because care and compassion is our culture.
-                            We believe compassion is as powerful as any medicine to cure mankind.
-                        </p>
-                    </div>
-                
-                    <div class="feature-item mb-5 mb-lg-0">
-                        <h5 style="color:black !important;text-align: center">Our Vision</h5>
-            
-                        <ul style="text-align: left;color:black;">
-                            <li>Provide quality healthcare to all resident in Darwha</li>
-                            <li>Achieve professional excellence in health care</li>
-                            <li>Adhere to national and global standard in healthcare</li>
-                            <li>Ensure care with integrity and ethics.</li>
-                            <li>To provide “Speciality and Superspeciality OPD” services at affordable rates.</li>
-                        </ul>
-                    </div>
-                
-                    <div class="feature-item mb-5 mb-lg-0">
-                        <h5 style="color:black !important;text-align: center">Our Mission</h5>
-                        <p style="text-align: left;color:black;">
-                            To impart patient centric quality health services at an affordable rate using cutting edge technology with human touch.	
-                        </p>
-                    </div>
-                </div>
-            </div>
+  <div class="container" id="values_parijat">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="feature-block d-lg-flex">
+          <div class="feature-item mb-5 mb-lg-0">
+            <h5 style="color:black;text-align: center;">About Us</h5>
+            <p style="color:black">
+              We are a Multispeciality clinic situated at prime location in Darwha city.
+              PariJit holds pride in being able to deliver quality services to their patients.
+              We are centres for multiple treatment services like General Medicine, Urology, Chest medicine and Dentistry are managed with highly qualified doctors. 
+              We genuinely care, because care and compassion is our culture.
+              We believe compassion is as powerful as any medicine to cure mankind.
+            </p>
+          </div>
+          <div class="feature-item mb-5 mb-lg-0">
+            <h5 style="color:black !important;text-align: center">Our Vision</h5>
+            <ul style="text-align: left;color:black;">
+              <li>Provide quality healthcare to all resident in Darwha</li>
+              <li>Achieve professional excellence in health care</li>
+              <li>Adhere to national and global standard in healthcare</li>
+              <li>Ensure care with integrity and ethics.</li>
+              <li>To provide “Speciality and Superspeciality OPD” services at affordable rates.</li>
+            </ul>
+          </div>
+          <div class="feature-item mb-5 mb-lg-0">
+            <h5 style="color:black !important;text-align: center">Our Mission</h5>
+            <p style="text-align: left;color:black;">
+              To impart patient centric quality health services at an affordable rate using cutting edge technology with human touch.	
+            </p>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 {% endblock %}
 {% block  parijit_team %}
 <section class="section doctors">
-    <div class="container" id="parijit_team">
-          <div class="row justify-content-center">
-               <div class="col-lg-6 text-center">
-                  <div class="section-title">
-                      <h2>Doctors</h2>
-                      <div class="divider mx-auto my-4"></div>
-                      <p>We provide a wide range of creative services adipisicing elit. Autem maxime rem modi eaque, voluptate. Beatae officiis neque </p>
-                  </div>
-              </div>
+  <div class="container" id="parijit_team">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 text-center">
+        <div class="section-title">
+          <h2>Doctors</h2>
+          <div class="divider mx-auto my-4"></div>
+          <p>We provide a wide range of creative services adipisicing elit. Autem maxime rem modi eaque, voluptate. Beatae officiis neque </p>
+        </div>
+      </div>
+    </div>
+    <div class="row shuffle-wrapper portfolio-gallery">
+      {% for doctor in doctors %}
+      <div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" >
+        <div class="position-relative doctor-inner-box">
+          <div class="doctor-profile">
+            <div class="doctor-img">
+              {% if doctor.image.url %}
+              <img src="{{ doctor.image.url }}" alt="{{ doctor.name }}" class="img-fluid w-100">
+              {% endif %}
+            </div>
           </div>
-  
-                <div class="row shuffle-wrapper portfolio-gallery">
-        {% for doctor in doctors %}
-            
-                <div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" >
-                    <div class="position-relative doctor-inner-box">
-                      <div class="doctor-profile">
-                         <div class="doctor-img">
-                            {% if doctor.image.url %}
-                                 <img src="{{ doctor.image.url }}" alt="{{ doctor.name }}" class="img-fluid w-100">
-                                {% endif %}
-                         </div>
-                      </div>
-                      <div class="content mt-3">
-                          <h4 class="mb-0">{{ doctor.name }}</h4>
-                          <p>{{ doctor.specialization }}</p>
-                          <p>{{ doctor.bio }}</p>
-                      </div> 
-                    </div>
-                </div>
-            
-        {% endfor %}
+          <div class="content mt-3">
+            <h4 class="mb-0">{{ doctor.name }}</h4>
+            <p>{{ doctor.specialization }}</p>
+            <p>{{ doctor.bio }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
-      
-    </div>
-  </section>
-  {% endblock %}
-  {% block  appointment %}
-  <style>
-    input, select, textarea {
-    box-sizing: border-box;
-    /* Add more styles as needed */
+  </div>
+</section>
+{% endblock %}
+{% block  appointment %}
+<style>
+  input, select, textarea {
+  box-sizing: border-box;
+  /* Add more styles as needed */
+  }
+</style>
+<script>
+  $(document).ready(function () {
+    // Set placeholder for the time input field
+    $('#time_of_appointment').attr('placeholder', 'hh:mm');
+  });
+</script>
+<style>
+  .error_div ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-  </style>
-  <script>
-    $(document).ready(function () {
-      // Set placeholder for the time input field
-      $('#time_of_appointment').attr('placeholder', 'hh:mm');
-    });
-  </script>
-  <section class="appoinment section">
-    <div class="container" id="appointment">
-      <div class="row">
-        <div class="col-lg-4">
-            <div class="mt-3">
-              <div class="feature-icon mb-3">
-                <i class="icofont-support text-lg"></i>
+.error_div li {
+    font-size: 0.8em;
+    color: #ff0000; /* Adjust the color based on your design */
+}
+</style>
+<section class="appoinment section">
+  <div class="container" id="appointment">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="mt-3">
+          <div class="feature-icon mb-3">
+            <i class="icofont-support text-lg"></i>
+          </div>
+          <span class="h3">Call for an Emergency Service!</span>
+          <h2 class="text-color mt-3">+84 789 1256 </h2>
+        </div>
+      </div>
+      <div class="col-lg-8" id="appointment_div">
+        <div class="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
+          <h2 class="mb-2 title-color">Book an appoinment</h2>
+          <p class="mb-4">Please fill in the required fields to book a slot for you.</p>
+          <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  {{ form.patient_name }}
+                 
+                </div>
               </div>
-               <span class="h3">Call for an Emergency Service!</span>
-                <h2 class="text-color mt-3">+84 789 1256 </h2>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  {{ form.age }}
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  {{ form.mobile_number }}
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  {{ form.date_of_appointment }}
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  {{ form.doctor }}
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  {{ form.time_of_appointment }}
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  {{form.message}}
+                </div>
+              </div>
+              
             </div>
-        </div>
-  
-        <div class="col-lg-8" id="appointment_div">
-             <div class="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
-              <h2 class="mb-2 title-color">Book an appoinment</h2>
-              <p class="mb-4">Please fill in the required fields to book a slot for you.</p>
-                <form method="post" class="needs-validation" novalidate>
-                  {% csrf_token %}
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        {{ form.patient_name }}
-                        <!-- <div class="invalid-feedback">
-                            Please provide a valid patient name.
-                        </div> -->
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                          {{ form.age }}
-                          
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        {{ form.mobile_number }}
-                        
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                          {{ form.date_of_appointment }}
-                      </div>
-                  </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                          {{ form.doctor }}
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                          {{ form.time_of_appointment }}
-                          
-                        </div>
-                    </div>
-                                         
-                </div>
-                <div class="form-group-2 mb-4">
-                    <textarea name="message" id="message" class="form-control" rows="6" placeholder="Your Message"></textarea>
-                </div>
-                <div class="error_div">
-                  {% if form.errors %}
-                  <ul>
+            
+            
+            <button type="button" class="btn btnbookappbnt btn btn-main btn-round-full"  >
+            Book an Appointment<i class="icofont-simple-right ml-2"></i>
+            </button>
+            <div class="row">
+              <div class="error_div col-lg-8">
+                {% if form.errors %}
+                <ul>
                   {{ form.errors.as_ul }}
-                  </ul>
-                  {% endif %}
-                  
-                </div>
-                <button type="button" class="btn btnbookappbnt btn btn-main btn-round-full"  >
-                  
-                  Book an Appointment<i class="icofont-simple-right ml-2"></i>
-                </button>
-                      
-                     
-                  </form>
+                </ul>
+                {% endif %}
               </div>
           </div>
+          </form>
         </div>
       </div>
     </div>
-  </section>
-  {% endblock %}
-  {% block  contact %}
-  <section class="section contact-info pb-0" style="align-items: center;">
-    <div class="container" id="contact" style="margin-bottom: 10px;">
-      <div class="row">
-        <div class="col-lg-4 col-md-6" style="margin: auto;float: none;">
-          <div class="contact-block mb-4 mb-lg-0">
-            <i class="icofont-live-support"></i>
-            <h5>Call Us</h5>
-            +823-4565-13456
-          </div>
+  </div>
+  </div>
+</section>
+{% endblock %}
+{% block  contact %}
+<section class="section contact-info pb-0" style="align-items: center;">
+  <div class="container" id="contact" style="margin-bottom: 10px;">
+    <div class="row">
+      <div class="col-lg-4 col-md-6" style="margin: auto;float: none;">
+        <div class="contact-block mb-4 mb-lg-0">
+          <i class="icofont-live-support"></i>
+          <h5>Call Us</h5>
+          +823-4565-13456
         </div>
-        
       </div>
     </div>
-  </section>
-  {% endblock %}
-
+  </div>
+</section>
+{% endblock %}
 {% block script_block %}
 <script>
-    $('.btnbookappbnt').click(function (e){
-      e.preventDefault();
-      let form = $(this).closest('form');
-      var formData = form.serialize();
-      $.ajax({
-          type: 'POST',
-          url: '{% url "homepage" %}',
-          dataType: "html",
-          data: formData,
-          success: function(response) {
-            e.preventDefault();
-              // let appoinment_div = $('#appointment_div');
-              // appoinment_div.html($(response).find('#appointment_div'))
-              
-              alert('Form submitted succesfully.');
-              $('form').find(':input').val('');
-              window.history.pushState(null, 'Home Page - Parijat Policlinic', window.location.href.split('#')[0]);
-          },
-          error: function(xhr){
-            console.log('error')
-            // alert('Something went wrong')
-            let appoinment_div = $('#appointment_div');
-            appoinment_div.html($(xhr['responseText']).find('#appointment_div'))
-            console.log(xhr);
-            e.preventDefault();
-          }
-      });
-    })
+  $('.btnbookappbnt').click(function (e){
+    e.preventDefault();
+    let form = $(this).closest('form');
+    var formData = form.serialize();
+    $.ajax({
+        type: 'POST',
+        url: '{% url "homepage" %}',
+        dataType: "html",
+        data: formData,
+        success: function(response) {
+          e.preventDefault();
+            // let appoinment_div = $('#appointment_div');
+            // appoinment_div.html($(response).find('#appointment_div'))
+            
+            alert('Form submitted succesfully.');
+            $('form').find(':input').val('');
+            window.history.pushState(null, 'Home Page - Parijat Policlinic', window.location.href.split('#')[0]);
+        },
+        error: function(xhr){
+          console.log('error')
+          // alert('Something went wrong')
+          let appoinment_div = $('#appointment_div');
+          appoinment_div.html($(xhr['responseText']).find('#appointment_div'))
+          console.log(xhr);
+          e.preventDefault();
+        }
+    });
+  })
 </script>
-
 {% endblock script_block%}

@@ -3,6 +3,8 @@ from django import forms
 from .models import Appointment, Doctor, VisitType
 from datetime import timezone
 from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator, MaxValueValidator
+
 import re
 # import phonenumbers
 
@@ -24,7 +26,7 @@ from datetime import datetime
 from .models import DoctorUnavailability
 
 def is_doctor_available(doctor, appointment_date, appointment_time):
-    
+
     # Check if the doctor is active
     if not doctor.is_active:
         return False
@@ -88,10 +90,10 @@ class AppointmentEntryForm(forms.ModelForm):
     )
 
     patient_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'autocomplete': 'off', 'placeholder': 'Patient Name'}))
-    age = forms.IntegerField( widget=forms.TextInput(attrs={'autocomplete': 'off', 'placeholder': 'Age'}))
+    age = forms.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(150)], widget=forms.TextInput(attrs={'autocomplete': 'off', 'placeholder': 'Age'}))
 
     mobile_number = forms.CharField( max_length=15, validators=[validate_mobile_number],widget=forms.TextInput(attrs={'autocomplete': 'off', 'placeholder': 'Mobile Number'}))
-
+    message = forms.CharField(widget=forms.Textarea(attrs={'autocomplete': 'off', 'placeholder': 'Your Message', 'rows': '4','class':'form-control'}), required=False)
     class Meta:
         model = Appointment
         
@@ -122,7 +124,7 @@ class AppointmentEntryForm(forms.ModelForm):
         self.fields['doctor'].widget.attrs['class'] = 'form-control height_element'
         self.fields['time_of_appointment'].widget.attrs['class'] = 'form-control height_element'
         self.fields['time_of_appointment'].widget.attrs['placeholder'] = 'hh:mm'
-        self.fields['message'].widget.attrs['class'] = 'form-control height_element'
+        self.fields['message'].widget.attrs['class'] = 'form-control'
  
         def clean_appointment_date(self):
             date_of_appointment = self.cleaned_data.get('date_of_appointment')
