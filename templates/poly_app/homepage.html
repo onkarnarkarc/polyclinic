@@ -2,42 +2,42 @@
 {% load static %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-  $(document).ready(function(){
+  $(document).ready(function () {
     // Add smooth scrolling to all links
-    $("a").on('click', function(event) {
-  
+    $("a").on('click', function (event) {
+
       // Make sure this.hash has a value before overriding default behavior
       if (this.hash !== "") {
         // Prevent default anchor click behavior
         event.preventDefault();
-  
+
         // Store hash
         var hash = this.hash;
-  
+
         // Using jQuery's animate() method to add smooth page scroll
         // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
         $('html, body').animate({
           scrollTop: $(hash).offset().top
-        }, 800, function(){
-  
+        }, 800, function () {
+
           // Add hash (#) to URL when done scrolling (default click behavior)
           window.location.hash = hash;
         });
       } // End if
     });
   });
-  
-  $('li .nav-item').on('click', function(){
-     $('li').removeClass('active');
-     $(this).toggleClass('active');
+
+  $('li .nav-item').on('click', function () {
+    $('li').removeClass('active');
+    $(this).toggleClass('active');
   })
-  
-  $('#top-nav-bar li a').click(function(e) {
-      $('#top-nav-bar li a').removeClass('current_page_item');
-      $(this).addClass('current_page_item');
+
+  $('#top-nav-bar li a').click(function (e) {
+    $('#top-nav-bar li a').removeClass('current_page_item');
+    $(this).addClass('current_page_item');
   });
 </script>
-{% block  about_parijat %}
+{% block about_parijat %}
 <section class="features">
   <div id="about_parijat">
     <section class="section about">
@@ -57,7 +57,8 @@
           <div class="col-lg-4">
             <div class="about-content pl-4 mt-4 mt-lg-0">
               <h2 class="title-color">Personal care <br>& healthy living</h2>
-              <p class="mt-4 mb-5">Your Health, Our Priority: Multispeciality Excellence at the Heart of Darwha City.</p>
+              <p class="mt-4 mb-5">Your Health, Our Priority: Multispeciality Excellence at the Heart of Darwha City.
+              </p>
             </div>
           </div>
         </div>
@@ -77,7 +78,8 @@
             <p style="color:black">
               We are a Multispeciality clinic situated at prime location in Darwha city.
               PariJit holds pride in being able to deliver quality services to their patients.
-              We are centres for multiple treatment services like General Medicine, Urology, Chest medicine and Dentistry are managed with highly qualified doctors. 
+              We are centres for multiple treatment services like General Medicine, Urology, Chest medicine and
+              Dentistry are managed with highly qualified doctors.
               We genuinely care, because care and compassion is our culture.
               We believe compassion is as powerful as any medicine to cure mankind.
             </p>
@@ -95,7 +97,8 @@
           <div class="feature-item mb-5 mb-lg-0">
             <h5 style="color:black !important;text-align: center">Our Mission</h5>
             <p style="text-align: left;color:black;">
-              To impart patient centric quality health services at an affordable rate using cutting edge technology with human touch.	
+              To impart patient centric quality health services at an affordable rate using cutting edge technology with
+              human touch.
             </p>
           </div>
         </div>
@@ -104,7 +107,7 @@
   </div>
 </section>
 {% endblock %}
-{% block  parijit_team %}
+{% block parijit_team %}
 <section class="section doctors">
   <div class="container" id="parijit_team">
     <div class="row justify-content-center">
@@ -112,13 +115,14 @@
         <div class="section-title">
           <h2>Doctors</h2>
           <div class="divider mx-auto my-4"></div>
-          <p>We provide a wide range of creative services adipisicing elit. Autem maxime rem modi eaque, voluptate. Beatae officiis neque </p>
+          <p>We provide a wide range of creative services adipisicing elit. Autem maxime rem modi eaque, voluptate.
+            Beatae officiis neque </p>
         </div>
       </div>
     </div>
     <div class="row shuffle-wrapper portfolio-gallery">
       {% for doctor in doctors %}
-      <div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" >
+      <div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item">
         <div class="position-relative doctor-inner-box">
           <div class="doctor-profile">
             <div class="doctor-img">
@@ -139,11 +143,13 @@
   </div>
 </section>
 {% endblock %}
-{% block  appointment %}
+{% block appointment %}
 <style>
-  input, select, textarea {
-  box-sizing: border-box;
-  /* Add more styles as needed */
+  input,
+  select,
+  textarea {
+    box-sizing: border-box;
+    /* Add more styles as needed */
   }
 </style>
 <script>
@@ -157,12 +163,13 @@
     list-style: none;
     margin: 0;
     padding: 0;
-}
+  }
 
-.error_div li {
+  .error_div li {
     font-size: 0.8em;
-    color: #ff0000; /* Adjust the color based on your design */
-}
+    color: #ff0000;
+    /* Adjust the color based on your design */
+  }
 </style>
 <section class="appoinment section">
   <div class="container" id="appointment">
@@ -180,13 +187,14 @@
         <div class="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
           <h2 class="mb-2 title-color">Book an appoinment</h2>
           <p class="mb-4">Please fill in the required fields to book a slot for you.</p>
-          <form method="post" class="needs-validation" novalidate>
+          <form class="form needs-validation" data-toggle="validator" method="POST" action="" id="appointment_form">
+          
             {% csrf_token %}
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
                   {{ form.patient_name }}
-                 
+
                 </div>
               </div>
               <div class="col-lg-6">
@@ -219,12 +227,12 @@
                   {{form.message}}
                 </div>
               </div>
-              
+
             </div>
-            
-            
-            <button type="button" class="btn btnbookappbnt btn btn-main btn-round-full"  >
-            Book an Appointment<i class="icofont-simple-right ml-2"></i>
+            <button type="button" class="btn btnbookappbnt btn btn-main btn-round-full" id="submit_button"
+              name="submit_button">
+              Book an Appointment
+              <i class="icofont-simple-right ml-2"></i>
             </button>
             <div class="row">
               <div class="error_div col-lg-8">
@@ -234,7 +242,7 @@
                 </ul>
                 {% endif %}
               </div>
-          </div>
+            </div>
           </form>
         </div>
       </div>
@@ -243,7 +251,7 @@
   </div>
 </section>
 {% endblock %}
-{% block  contact %}
+{% block contact %}
 <section class="section contact-info pb-0" style="align-items: center;">
   <div class="container" id="contact" style="margin-bottom: 10px;">
     <div class="row">
@@ -260,33 +268,123 @@
 {% endblock %}
 {% block script_block %}
 <script>
-  $('.btnbookappbnt').click(function (e){
-    e.preventDefault();
-    let form = $(this).closest('form');
-    var formData = form.serialize();
-    $.ajax({
+  $('#time_of_appointment').hide()
+  function form_input_change_event_binding() {
+    $('form :input').on('change', function () {
+      $('.error_div').html('')
+    });
+
+    $('#id_date_of_appointment, #id_doctor').on('change', function () {
+      let dr_id = $('#id_doctor').val()
+      let appointment_date = $('#id_date_of_appointment').val()
+      if (dr_id && appointment_date){
+      $.ajax({
+        url: '{% url "dr_appointment_time_slot" %}',
         type: 'POST',
-        url: '{% url "homepage" %}',
-        dataType: "html",
-        data: formData,
-        success: function(response) {
-          e.preventDefault();
-            // let appoinment_div = $('#appointment_div');
-            // appoinment_div.html($(response).find('#appointment_div'))
-            
-            alert('Form submitted succesfully.');
-            $('form').find(':input').val('');
-            window.history.pushState(null, 'Home Page - Parijat Policlinic', window.location.href.split('#')[0]);
+        dataType: 'json',
+        data: {
+          'dr_id': dr_id,
+          'appointment_date': appointment_date,
+          'csrfmiddlewaretoken': '{{csrf_token}}'
         },
-        error: function(xhr){
+        success: function (data) {
+          // Do some work
+          data = data['data']
+          let time_slot_option_html = ''
+          if (data.length == 0) {
+            showButtonLoader($('.btnbookappbnt'))
+          }
+          for (let i=0; i<data.length; i++) {
+            time_slot_option_html += '<option val="'+ data[i]["start_time_of_availability"] + data[i]["end_time_of_availability"] + '">'+ data[i]["start_time_of_availability"] +  ' to ' + data[i]["end_time_of_availability"]  + ' </option>'
+          }
+          $('#time_of_appointment').html(time_slot_option_html).show()
+          
+        },
+        error: function (xhr) {
+          // Do Error Message here
+          console.log('error')
+          // alert('Something went wrong')
+          
+         
+          console.log(xhr);
+          
+        }
+      });
+      } else {
+        $('#time_of_appointment').val('').hide()
+      }
+      // Write Ajax call
+
+      // Replace below 
+    })
+  }
+
+  function showButtonLoader(current_selector) {
+    current_selector.find('i').remove();
+    current_selector.attr('disabled', true);
+    current_selector.append('<i class="icon-spinner3 spinner ml-1"></i>')
+  }
+  function hideButtonLoader(current_selector) {
+    current_selector.attr('disabled', false);
+    current_selector.find('i').remove();
+  }
+
+  function form_submit() {
+    $('.btnbookappbnt').on('click', function (e) {
+      alert('Form sbumiting')
+      e.preventDefault()
+      let submit_button = $(this);
+      var form = submit_button.closest('form');
+      var is_form_valid = form[0].checkValidity();
+      
+      if (!is_form_valid) {
+        alert('is_form_valid'+ is_form_valid + ' length ' + form.length)
+        console.log('Custom Form validation failed')
+        form.submit();
+        return
+      }
+      let form_name = $(form[0]).attr('id')
+      alert('form_name' + form_name)
+      let form_data = new FormData($('#' + form_name).get(0));
+
+      $.ajax({
+        url: '{% url "homepage" %}',
+        method: 'POST',
+        type: 'html',
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        beforeSend: function () { showButtonLoader(submit_button); },
+        complete: function () { hideButtonLoader(submit_button); },
+        success: function (data) {
+          // Do some work
+          e.preventDefault();
+          alert('Form submitted succesfully.');
+          $('form').find(':input').val('');
+          window.history.pushState(null, 'Home Page - Parijat Policlinic', window.location.href.split('#')[0]);
+          form_input_change_event_binding()
+          location.reload();
+        },
+        error: function (xhr) {
+          // Do Error Message here
           console.log('error')
           // alert('Something went wrong')
           let appoinment_div = $('#appointment_div');
-          appoinment_div.html($(xhr['responseText']).find('#appointment_div'))
+          appoinment_div.html($(xhr['responseText']).find('#appointment_div').html())
+          form_input_change_event_binding()
+          form_submit()
           console.log(xhr);
           e.preventDefault();
         }
+      });
     });
-  })
+  }
+  form_submit()
+
+  form_input_change_event_binding()
+
 </script>
+<script src="{% static 'js/validation.js' %}"></script>
+
 {% endblock script_block%}

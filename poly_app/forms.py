@@ -1,6 +1,6 @@
 # clinic/forms.py
 from django import forms
-from .models import Appointment, Doctor, VisitType
+from .models import Appointment, Doctor, DoctorAvailability, VisitType
 from datetime import timezone
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -80,8 +80,9 @@ class VisitTypeForm(forms.ModelForm):
 
 
 class AppointmentEntryForm(forms.ModelForm):
-    time_of_appointment = forms.TimeField(
-        widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control height_element','id':'time_of_appointment', 'placeholder': 'hh:mm'})
+    time_of_appointment = forms.ModelChoiceField(
+        queryset=DoctorAvailability.objects.filter(is_active=True),
+        widget=forms.Select(attrs={'type': 'time', 'class': 'form-control height_element','id':'time_of_appointment', 'placeholder': 'hh:mm'})
     )
 
     doctor = forms.ModelChoiceField(
@@ -94,10 +95,11 @@ class AppointmentEntryForm(forms.ModelForm):
 
     mobile_number = forms.CharField( max_length=15, validators=[validate_mobile_number],widget=forms.TextInput(attrs={'autocomplete': 'off', 'placeholder': 'Mobile Number'}))
     message = forms.CharField(widget=forms.Textarea(attrs={'autocomplete': 'off', 'placeholder': 'Your Message', 'rows': '4','class':'form-control'}), required=False)
+    
     class Meta:
         model = Appointment
-        
         fields = ['patient_name', 'age', 'mobile_number', 'date_of_appointment','time_of_appointment', 'doctor', 'message']
+    
     def clean(self):
         cleaned_data = super().clean()
 
@@ -111,6 +113,7 @@ class AppointmentEntryForm(forms.ModelForm):
                 raise ValidationError('Doctor is not available at the specified date and time.')
 
         return cleaned_data
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Customize the doctor field widget to display doctor names

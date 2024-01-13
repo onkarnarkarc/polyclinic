@@ -1,3 +1,5 @@
+from django.http import JsonResponse
+from django.views.generic import TemplateView
 from django.shortcuts import render
 from . import models
 from .models import *
@@ -82,3 +84,37 @@ def appointment_dashboard(request):
         appointments = paginator.page(paginator.num_pages)
     doctors = Doctor.objects.all()
     return render(request, 'poly_app/appointment_dashboard.html', {'filter': appointment_filter,'appointments': appointments, 'doctors': doctors})
+
+
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class DrAppointmentSlotViewset(TemplateView):
+
+    def get(self, request, *args, **kwargs):
+        print('Dr appointment request')
+        return render(request)
+
+    def post(self, request, *args, **kwargs):
+        print('post method')
+        if request.is_ajax():
+            return self.ajax(request, *args, **kwargs)
+        return render(request)
+
+    def ajax(self, request, *args, **kwargs):
+        print('ajax method called')
+        data = request.POST.copy()
+        dr_id = data.get('dr_id')
+        selected_date = data.get('appointment_date')
+        print(data)
+        if dr_id and selected_date:
+            dr_time_slot_queryset = list(DoctorAvailability.objects.filter(doctor_id=dr_id, is_active=True).values('start_time_of_availability', 'end_time_of_availability', 'id'))
+            # Modify this logic to give correct time slot
+
+            print(type(dr_time_slot_queryset),"==",dr_time_slot_queryset)
+            return JsonResponse(data={'data': dr_time_slot_queryset}, status=200)
+        return JsonResponse(data={}, status=400)
+
+
