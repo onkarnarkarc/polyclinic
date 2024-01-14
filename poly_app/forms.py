@@ -50,22 +50,22 @@ def is_doctor_available(doctor, appointment_date, appointment_time):
     # if doctor_unavailability:
         
 
-    if doctor_availability and not doctor_unavailability:
-        # Check if the appointment time is within the doctor's available time range
-        start_time = doctor_availability.start_time_of_availability
-        end_time = doctor_availability.end_time_of_availability
+    # if doctor_availability and not doctor_unavailability:
+    #     # Check if the appointment time is within the doctor's available time range
+    #     start_time = doctor_availability.start_time_of_availability
+    #     end_time = doctor_availability.end_time_of_availability
 
-        if start_time <= appointment_time <= end_time:
-            # Check if there is already an appointment scheduled for the specified date and time
-            conflicting_appointment = doctor.appointment_set.filter(
-                date_of_appointment=appointment_date,
-                time_of_appointment=appointment_time,
-                is_active=True
-            ).first()
+    #     if start_time <= appointment_time <= end_time:
+    #         # Check if there is already an appointment scheduled for the specified date and time
+    #         conflicting_appointment = doctor.appointment_set.filter(
+    #             date_of_appointment=appointment_date,
+    #             time_of_appointment=appointment_time,
+    #             is_active=True
+    #         ).first()
 
-            if not conflicting_appointment:
-                # If all checks pass, the doctor is available
-                return True
+    #         if not conflicting_appointment:
+    #             # If all checks pass, the doctor is available
+    #             return True
 
     # If any of the checks fail, the doctor is not available
     return False
@@ -82,7 +82,7 @@ class VisitTypeForm(forms.ModelForm):
 class AppointmentEntryForm(forms.ModelForm):
     time_of_appointment = forms.ModelChoiceField(
         queryset=DoctorAvailability.objects.filter(is_active=True),
-        widget=forms.Select(attrs={'type': 'time', 'class': 'form-control height_element','id':'time_of_appointment', 'placeholder': 'hh:mm'})
+        widget=forms.Select(attrs={'type': 'time', 'class': 'form-control height_element','id':'time_of_appointment'})
     )
 
     doctor = forms.ModelChoiceField(
@@ -126,7 +126,7 @@ class AppointmentEntryForm(forms.ModelForm):
         self.fields['date_of_appointment'].widget = forms.TextInput(attrs={'type': 'date', 'class': 'form-control height_element', 'required': True})
         self.fields['doctor'].widget.attrs['class'] = 'form-control height_element'
         self.fields['time_of_appointment'].widget.attrs['class'] = 'form-control height_element'
-        self.fields['time_of_appointment'].widget.attrs['placeholder'] = 'hh:mm'
+        # self.fields['time_of_appointment'].widget.attrs['placeholder'] = 'hh:mm'
         self.fields['message'].widget.attrs['class'] = 'form-control'
  
         def clean_appointment_date(self):

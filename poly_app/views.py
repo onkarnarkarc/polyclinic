@@ -15,6 +15,7 @@ def homepage(request):
     status_code = 200
     if request.method == 'POST':
         form = AppointmentEntryForm(request.POST)
+        print("form==================", form)
         if form.is_valid():
             
             form.fields['doctor'].initial = None

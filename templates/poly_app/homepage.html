@@ -295,7 +295,7 @@
             showButtonLoader($('.btnbookappbnt'))
           }
           for (let i=0; i<data.length; i++) {
-            time_slot_option_html += '<option val="'+ data[i]["start_time_of_availability"] + data[i]["end_time_of_availability"] + '">'+ data[i]["start_time_of_availability"] +  ' to ' + data[i]["end_time_of_availability"]  + ' </option>'
+            time_slot_option_html += '<option val="'+ data[i]["id"] +'">'+ data[i]["start_time_of_availability"] +  ' to ' + data[i]["end_time_of_availability"]  + ' </option>'
           }
           $('#time_of_appointment').html(time_slot_option_html).show()
           
@@ -331,7 +331,7 @@
 
   function form_submit() {
     $('.btnbookappbnt').on('click', function (e) {
-      alert('Form sbumiting')
+      // alert('Form sbumiting')
       e.preventDefault()
       let submit_button = $(this);
       var form = submit_button.closest('form');
