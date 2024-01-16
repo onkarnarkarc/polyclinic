@@ -14,20 +14,23 @@ def homepage(request):
     print("hello")
     status_code = 200
     if request.method == 'POST':
-        form = AppointmentEntryForm(request.POST)
-        print("form==================", form)
+        data = request.POST.copy()
+
+        form = AppointmentEntryForm(data)
+        # print("form==================", form)
         if form.is_valid():
-            
+            print("in success==========")
             form.fields['doctor'].initial = None
             form.errors.clear()
             form.errors.pop('age', None)
             form.save()
           
         else: 
-           
+            print("here===",form.errors)
             status_code = 400
             # Add any additional logic, e.g., send confirmation email
     else:
+        print("here in the last else ====================")
         form = AppointmentEntryForm()
        
         form.errors.clear()
@@ -37,7 +40,7 @@ def homepage(request):
         'doctors': doctors,
         'form': form
     }
-
+    
     # doctors = {}
     print('Rednering Success response')
     return render(request, 'poly_app/homepage.html', form_data, status=status_code)
@@ -114,7 +117,7 @@ class DrAppointmentSlotViewset(TemplateView):
             dr_time_slot_queryset = list(DoctorAvailability.objects.filter(doctor_id=dr_id, is_active=True).values('start_time_of_availability', 'end_time_of_availability', 'id'))
             # Modify this logic to give correct time slot
 
-            print(type(dr_time_slot_queryset),"==",dr_time_slot_queryset)
+            # print(type(dr_time_slot_queryset),"==",dr_time_slot_queryset)
             return JsonResponse(data={'data': dr_time_slot_queryset}, status=200)
         return JsonResponse(data={}, status=400)
 

@@ -38,7 +38,7 @@ def is_doctor_available(doctor, appointment_date, appointment_time):
     doctor_availability = doctor.doctoravailability_set.filter(
         day_of_week=appointment_day_of_week,
         is_active=True
-    ).first()
+    ).exists()
 
     # Check if the doctor is explicitly marked as unavailable for the specified date
     doctor_unavailability = DoctorUnavailability.objects.filter(
@@ -47,25 +47,25 @@ def is_doctor_available(doctor, appointment_date, appointment_time):
         is_active=True
     ).exists()
 
-    # if doctor_unavailability:
-        
+    if doctor_unavailability or not doctor_availability:
+        return False
 
-    # if doctor_availability and not doctor_unavailability:
-    #     # Check if the appointment time is within the doctor's available time range
-    #     start_time = doctor_availability.start_time_of_availability
-    #     end_time = doctor_availability.end_time_of_availability
+    if doctor_availability and not doctor_unavailability:
+        # Check if the appointment time is within the doctor's available time range
+        # start_time = doctor_availability.start_time_of_availability
+        # end_time = doctor_availability.end_time_of_availability
 
-    #     if start_time <= appointment_time <= end_time:
-    #         # Check if there is already an appointment scheduled for the specified date and time
-    #         conflicting_appointment = doctor.appointment_set.filter(
-    #             date_of_appointment=appointment_date,
-    #             time_of_appointment=appointment_time,
-    #             is_active=True
-    #         ).first()
+        # if start_time <= appointment_time <= end_time:
+        #     # Check if there is already an appointment scheduled for the specified date and time
+        #     conflicting_appointment = doctor.appointment_set.filter(
+        #         date_of_appointment=appointment_date,
+        #         time_of_appointment=appointment_time,
+        #         is_active=True
+        #     ).first()
 
-    #         if not conflicting_appointment:
-    #             # If all checks pass, the doctor is available
-    #             return True
+        #     if not conflicting_appointment:
+                # If all checks pass, the doctor is available
+        return True
 
     # If any of the checks fail, the doctor is not available
     return False
@@ -80,14 +80,14 @@ class VisitTypeForm(forms.ModelForm):
 
 
 class AppointmentEntryForm(forms.ModelForm):
-    time_of_appointment = forms.ModelChoiceField(
-        queryset=DoctorAvailability.objects.filter(is_active=True),
-        widget=forms.Select(attrs={'type': 'time', 'class': 'form-control height_element','id':'time_of_appointment'})
-    )
-
     doctor = forms.ModelChoiceField(
         queryset=Doctor.objects.filter(is_active=True),
         empty_label="Select Doctor"
+    )
+
+    selected_time_slot = forms.ModelChoiceField(
+        queryset=DoctorAvailability.objects.filter(is_active=True),
+        widget=forms.Select(attrs={ 'class': 'form-control height_element','id':'selected_time_slot'})
     )
 
     patient_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'autocomplete': 'off', 'placeholder': 'Patient Name'}))
@@ -98,18 +98,18 @@ class AppointmentEntryForm(forms.ModelForm):
     
     class Meta:
         model = Appointment
-        fields = ['patient_name', 'age', 'mobile_number', 'date_of_appointment','time_of_appointment', 'doctor', 'message']
+        fields = ['patient_name', 'age', 'mobile_number', 'date_of_appointment','selected_time_slot', 'doctor', 'message']
     
     def clean(self):
         cleaned_data = super().clean()
 
         doctor = cleaned_data.get('doctor')
         appointment_date = cleaned_data.get('date_of_appointment')
-        appointment_time = cleaned_data.get('time_of_appointment')
+        selected_time_slot = cleaned_data.get('selected_time_slot')
 
-        if doctor and appointment_date and appointment_time:
+        if doctor and appointment_date and selected_time_slot:
             # Check if the doctor is available
-            if not is_doctor_available(doctor, appointment_date, appointment_time):
+            if not is_doctor_available(doctor, appointment_date, selected_time_slot):
                 raise ValidationError('Doctor is not available at the specified date and time.')
 
         return cleaned_data
@@ -125,7 +125,7 @@ class AppointmentEntryForm(forms.ModelForm):
         # Customize the appearance of the date input field
         self.fields['date_of_appointment'].widget = forms.TextInput(attrs={'type': 'date', 'class': 'form-control height_element', 'required': True})
         self.fields['doctor'].widget.attrs['class'] = 'form-control height_element'
-        self.fields['time_of_appointment'].widget.attrs['class'] = 'form-control height_element'
+        self.fields['selected_time_slot'].widget.attrs['class'] = 'form-control height_element'
         # self.fields['time_of_appointment'].widget.attrs['placeholder'] = 'hh:mm'
         self.fields['message'].widget.attrs['class'] = 'form-control'
  

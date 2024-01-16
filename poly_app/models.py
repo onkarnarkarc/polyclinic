@@ -28,7 +28,7 @@ class DoctorAvailability(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return str(self.doctor)+"-"+str(self.day_of_week)
+        return str(self.start_time_of_availability)+"-"+str(self.end_time_of_availability)
 
 
 class DoctorUnavailability(models.Model):
